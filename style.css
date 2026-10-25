@@ -261,3 +261,10 @@ header nav{max-width:100%;min-width:0}
 .contact .email .email-label{font:10px var(--mono);letter-spacing:1px;text-transform:uppercase;color:var(--muted);flex:none}
 .contact .email:hover{border-bottom-color:var(--accent)}
 @media(max-width:760px){.text-link{min-height:36px;padding-top:5px}.contact .email .email-label{font-size:9px;letter-spacing:.5px}}
+
+/* Research description only: allow its grid track to shrink on handheld screens. */
+@media(max-width:760px){
+#research .section-heading{grid-template-columns:minmax(0,1fr)}
+#research .section-heading>.research-intro{width:100%;max-width:100%;min-width:0;font-size:11px;line-height:1.85;overflow-wrap:break-word;white-space:normal}
+#research .research-intro>span{display:inline;white-space:normal}
+}
