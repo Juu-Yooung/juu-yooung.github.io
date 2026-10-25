@@ -214,3 +214,50 @@ header{min-height:68px;padding-top:12px;padding-bottom:12px}
 html{scroll-padding-top:84px}
 }
 @media(max-width:350px){.about{grid-template-columns:70px minmax(0,1fr);column-gap:14px}.about-portrait-wrap{max-width:70px}.about-heading{font-size:20px}}
+
+/* Native mobile browsers: constrain layout width and use font-independent icons. */
+html{width:100%;max-width:100%;overflow-x:hidden}
+body{width:100%;max-width:100%;min-width:0;overflow-x:hidden}
+@supports(overflow:clip){body{overflow-x:clip}}
+main,header,footer,main>section{max-width:100%;min-width:0}
+.ui-icon{display:inline-block;position:relative;box-sizing:border-box;flex:none;width:14px;height:14px;vertical-align:-1px;font-style:normal;color:inherit}
+.ui-menu{background:linear-gradient(currentColor,currentColor) center 2px/14px 1.5px no-repeat,linear-gradient(currentColor,currentColor) center 6px/14px 1.5px no-repeat,linear-gradient(currentColor,currentColor) center 10px/14px 1.5px no-repeat}
+.ui-pause:before,.ui-pause:after{content:'';position:absolute;top:2px;bottom:2px;width:2px;background:currentColor}
+.ui-pause:before{left:4px}.ui-pause:after{right:4px}
+.ui-play:before{content:'';position:absolute;left:4px;top:2px;border-left:8px solid currentColor;border-top:5px solid transparent;border-bottom:5px solid transparent}
+.wordmark .ui-icon{vertical-align:0}
+@media(max-width:1100px){
+.section-body,.about-intro,.about-copy,.about-facts,.background-grid,.publication-list,.honors-list{min-width:0;max-width:100%}
+.hero h1,.hero-statement,.hero-description,.hero-content>.eyebrow{max-width:100%;overflow-wrap:anywhere}
+.statement-line,.description-line{white-space:normal}
+.about-facts li,.award-title,.award-topic,.award-note,.publication h3,.pub-venue,.authors{overflow-wrap:anywhere}
+.honors-list .award .thesis-topic{white-space:normal}
+.hero-art>svg{max-width:100%;overflow:hidden}
+.research-card{min-width:0;max-width:100%}
+.research-visual{min-width:0}
+.research-visual>svg{max-width:100%}
+.hero-footer{flex-wrap:wrap;gap:12px 18px}
+}
+@media(max-width:760px){
+.research-card{grid-template-columns:minmax(0,.38fr) minmax(0,.62fr)}
+.hero-footer>span,.hero-footer>a{max-width:100%}
+.hero-footer>a{display:inline-flex;align-items:center;gap:10px}
+.hero-footer>a>span{margin-left:0}
+.motion-toggle{right:max(12px,env(safe-area-inset-right));max-width:calc(100% - 24px)}
+header nav{max-width:100%;min-width:0}
+.contact-details{min-width:0;max-width:100%}
+}
+
+/* Quiet editorial links: clear underlines instead of navigation arrows. */
+.text-link{display:inline-block;gap:0;padding-bottom:7px;border-bottom:1px solid #9CAFC3;font-size:12px;line-height:1.6;transition:color .2s,border-color .2s}
+.text-link:hover,.text-link:focus-visible{gap:0;color:var(--accent);border-bottom-color:var(--accent)}
+.publication h3 a{color:var(--ink);text-decoration-line:underline;text-decoration-color:#B0BECF;text-decoration-thickness:1px;text-underline-offset:4px;text-decoration-skip-ink:auto;transition:color .2s,text-decoration-color .2s}
+.publication h3 a:hover,.publication h3 a:focus-visible{color:var(--accent);text-decoration-color:var(--accent)}
+.about-facts a{color:var(--accent);text-decoration:underline;text-decoration-color:#9CAFC3;text-decoration-thickness:1px;text-underline-offset:4px}
+.about-facts a:hover{text-decoration-color:var(--accent)}
+.hero-footer>a,footer>a{text-decoration:underline;text-decoration-color:#A5B5C5;text-decoration-thickness:1px;text-underline-offset:5px;transition:color .2s}
+.hero-footer>a:hover,footer>a:hover{color:var(--accent);text-decoration-color:var(--accent)}
+.wordmark:hover{color:var(--accent)}
+.contact .email .email-label{font:10px var(--mono);letter-spacing:1px;text-transform:uppercase;color:var(--muted);flex:none}
+.contact .email:hover{border-bottom-color:var(--accent)}
+@media(max-width:760px){.text-link{min-height:36px;padding-top:5px}.contact .email .email-label{font-size:9px;letter-spacing:.5px}}
