@@ -1,4 +1,10 @@
 (() => {
+ // Preserve links shared before Highlights became a separate page.
+ if (window.location.hash === '#highlights' && !document.getElementById('highlights')) {
+   window.location.replace(new URL('highlights.html#highlights', window.location.href).href);
+   return;
+ }
+
  const header = document.querySelector('header');
  const menuButton = document.querySelector('.nav-toggle');
  const mainNav = document.getElementById('main-nav');
@@ -18,6 +24,7 @@
  const toggle = document.querySelector('.motion-toggle');
  const ns = 'http://www.w3.org/2000/svg';
  const group = document.querySelector('#membrane-planes');
+ if (group && toggle) {
  const paths = [];
  const node = (tag, attrs, parent=group) => { const el=document.createElementNS(ns,tag);Object.entries(attrs).forEach(([key,value])=>el.setAttribute(key,value));parent.append(el);return el; };
  // An abstract semiconductor landscape: patterned wafer, sculpted surfaces, and microstructures.
@@ -31,5 +38,6 @@
  const draw=(t)=>{paths.forEach(({el,i,orientation})=>{const points=[];for(let j=-28;j<=28;j+=1){let u=orientation?j:i,v=orientation?i:j;let r=Math.sqrt(u*u+v*v);let z=95+60*Math.exp(-r*r/550)*Math.cos(r*.13-t*.00035)+9*Math.sin(u*.16+v*.11+t*.00018);points.push(project(u,v,z));}el.setAttribute('d',line(points));});};
  draw(0);let last=0;const animate=t=>{if(!paused && !document.hidden && t-last>40){draw(t);last=t;}requestAnimationFrame(animate);};requestAnimationFrame(animate);
  const setToggle=()=>{document.body.classList.toggle('motion-paused',paused);toggle.setAttribute('aria-pressed',String(paused));toggle.innerHTML=paused?'Resume motion <span><i class="ui-icon ui-play" aria-hidden="true"></i></span>':'Pause motion <span><i class="ui-icon ui-pause" aria-hidden="true"></i></span>';};setToggle();toggle.addEventListener('click',()=>{paused=!paused;setToggle();});reduced.addEventListener('change',()=>{paused=reduced.matches;setToggle();});
- if('IntersectionObserver' in window){document.documentElement.classList.add('js-motion');const reveal=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');reveal.unobserve(e.target);}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>reveal.observe(el));const navObserver=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));}})},{rootMargin:'-15% 0px -65% 0px'});document.querySelectorAll('main section[id]').forEach(s=>navObserver.observe(s));}
+ }
+ if('IntersectionObserver' in window){document.documentElement.classList.add('js-motion');const reveal=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');reveal.unobserve(e.target);}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(el=>reveal.observe(el));const navObserver=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('active',new URL(a.href, window.location.href).hash==='#'+e.target.id));}})},{rootMargin:'-15% 0px -65% 0px'});document.querySelectorAll('main section[id]').forEach(s=>navObserver.observe(s));}
 })();

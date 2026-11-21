@@ -333,3 +333,33 @@ header nav{max-width:100%;min-width:0}
   .highlight-content .highlight-organization{font-size:12px}
   .highlight-content > .highlight-details{margin-top:0}
 }
+
+/* Highlights navigation and selected entries. */
+header nav a.nav-highlights{
+  font-weight:700;
+  color:var(--ink);
+  text-decoration:underline;
+  text-decoration-thickness:1.5px;
+  text-underline-offset:6px;
+}
+.highlight-card.highlight-featured{
+  position:relative;
+  border:2px solid var(--accent);
+  background:transparent;
+  padding:44px 22px 22px;
+  margin:18px 0;
+}
+.highlight-featured-label{
+  position:absolute;
+  top:12px;
+  left:22px;
+  color:var(--accent);
+  font-size:12px;
+  font-weight:700;
+  line-height:1.4;
+}
+.motion-toggle[hidden]{display:none}
+@media(max-width:600px){
+  .highlight-card.highlight-featured{padding:40px 14px 16px}
+  .highlight-featured-label{top:10px;left:14px}
+}
