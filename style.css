@@ -371,3 +371,101 @@ header nav{max-width:100%;min-width:0}
 .guided-waves-card-visual{display:flex;align-items:center;background:#fff}
 .guided-waves-card-visual img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:contain;padding:10px}
 @media(max-width:760px){.guided-waves-card-visual img{height:100%;aspect-ratio:auto;object-fit:contain;padding:5px}}
+
+/* Compact shared header and research-page content width. */
+:root{--site-header-height:72px;--case-index-height:58px}
+html{scroll-padding-top:var(--site-header-height)}
+header{height:var(--site-header-height);min-height:var(--site-header-height);padding-top:0;padding-bottom:0}
+header .wordmark{font-size:24px}
+.forrheu-page .fr-wrap,.gw-page .gw-wrap{width:88%;max-width:1200px}
+.forrheu-page .fr-index,.gw-page .gw-index{top:var(--site-header-height)}
+.forrheu-page main [id],.gw-page main [id]{scroll-margin-top:calc(var(--case-index-height) + 14px)}
+.forrheu-page #project,.gw-page #overview{scroll-margin-top:12px}
+@media(max-width:1100px){
+ :root{--site-header-height:60px}
+ header{height:auto;min-height:var(--site-header-height);padding-top:10px;padding-bottom:10px}
+}
+@media(max-width:760px){
+ :root{--site-header-height:56px;--case-index-height:54px}
+ header{padding-top:8px;padding-bottom:8px}
+ header .wordmark{font-size:22px}
+}
+
+/* Cover-inspired silicon process platform: evolution, architecture diversity, device function. */
+.hero-art.hero-art-morphology{align-self:center;max-width:620px;width:100%;justify-self:center}
+.morphology-frame{position:relative;aspect-ratio:6/5;margin:0;overflow:hidden;isolation:isolate;background:#f7f8fa;transform:perspective(1100px) rotateX(var(--morphology-tilt-x,0deg)) rotateY(var(--morphology-tilt-y,0deg));transition:transform .5s cubic-bezier(.2,.65,.3,1)}
+.morphology-frame::after{content:'';position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(90deg,#f7f8fa,transparent 7%,transparent 95%,#f7f8fa),linear-gradient(0deg,#f7f8fa,transparent 7%,transparent 95%,#f7f8fa)}
+.morphology-plane{position:absolute;inset:0}
+.morphology-image,.morphology-surface,.morphology-device,.morphology-canvas{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:contain}
+.morphology-surface,.morphology-device{pointer-events:none;will-change:transform}
+.morphology-surface{animation:morphology-breathe 2.8s ease-in-out infinite paused;clip-path:polygon(3% 58%,29% 39%,56% 46%,50% 65%,27% 81%,3% 81%);transform-origin:30% 65%}
+.morphology-device{animation:morphology-resonate 1.8s ease-in-out infinite paused;clip-path:polygon(63% 5%,98% 7%,99% 27%,66% 24%);transform-origin:82% 16%}
+.morphology-canvas{z-index:2;pointer-events:none}
+.hero-motion-running .morphology-frame[data-phase="evolution"] .morphology-surface{animation-play-state:running}
+.hero-motion-running .morphology-frame[data-phase="devices"] .morphology-device{animation-play-state:running}
+.motion-paused .morphology-frame{transition:none}
+.morphology-caption{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:14px 10px 0;padding-top:12px;border-top:1px solid #cdd6e1;font:10px/1.65 var(--mono);letter-spacing:.2px;color:#7c8998}
+.morphology-caption>span{position:relative;padding-top:7px;transition:color .7s ease}
+.morphology-caption>span::before{content:'';position:absolute;left:0;top:0;width:15px;height:2px;background:#c6d0dc;transition:background .7s ease,width .7s ease}
+.morphology-caption>span.is-active{color:#244e76}
+.morphology-caption>span.is-active::before{width:28px;background:#527fa3}
+@keyframes morphology-breathe{0%,100%{transform:translateY(0) scaleY(1)}50%{transform:translateY(-1.1px) scaleY(1.002)}}
+@keyframes morphology-resonate{0%,100%{transform:translateX(-.55px)}50%{transform:translateX(.55px)}}
+@media(max-width:1100px){.hero-art.hero-art-morphology{max-width:100%}}
+@media(max-width:760px){.hero-art.hero-art-morphology{max-width:540px}.morphology-caption{font-size:9px;gap:9px;margin-top:8px}}
+@media(prefers-reduced-motion:reduce){.morphology-frame,.morphology-caption>span,.morphology-caption>span::before{transition:none}}
+
+
+/* Organic, frameless 3D architectures occupy the hero, with visible connected architectures and no reading veil. */
+.morphology-home .hero{position:relative;min-height:700px;overflow:hidden}
+.morphology-home .hero-grid{opacity:.10}
+.morphology-home .hero-content{position:relative;z-index:3;isolation:isolate}
+.morphology-home .hero-content::before{display:none}
+.morphology-home .hero-art.hero-art-morphology{position:absolute;inset:0;z-index:4;max-width:none;width:100%;height:100%;margin:0;pointer-events:none}
+.morphology-home .morphology-frame{position:absolute;inset:0;aspect-ratio:auto;background:transparent;overflow:visible;transform:none;transition:none;mask-image:linear-gradient(180deg,transparent,#000 7%,#000 86%,transparent)}
+.morphology-home .morphology-frame::after{display:none}
+.morphology-home .morphology-canvas{display:block;width:100%;height:100%;pointer-events:none}
+.morphology-home .morphology-caption{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0;padding:0;margin:0}
+.morphology-home .hero-footer{z-index:5}
+@media(max-width:1100px) and (min-width:761px){.morphology-home .hero{min-height:620px}}
+@media(max-width:760px){
+ .morphology-home .hero{display:block;min-height:0;padding-bottom:78px}
+ .morphology-home .hero-content::before{display:none}
+ .morphology-home .hero-art.hero-art-morphology{position:relative;inset:auto;width:calc(100% + 12%);height:clamp(340px,100vw,460px);margin:8px -6% -18px}
+ .morphology-home .morphology-frame{mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,#000 48%,transparent 100%)}
+}
+
+
+/* Phone-only overlap: keep moving structures beside the introduction, with local text protection. */
+@media(max-width:760px){
+ .morphology-home .hero-art.hero-art-morphology{
+  z-index:1;
+  margin-top:clamp(-270px,-62vw,-210px);
+ }
+ .morphology-home .hero-content{z-index:3}
+ .morphology-home .hero-statement{color:var(--ink);line-height:1.65}
+ .morphology-home .hero-description{color:#344256;font-size:14px;line-height:1.8;margin-bottom:24px}
+ .morphology-home .hero-statement .statement-line,
+ .morphology-home .hero-description .description-line{
+  display:inline;
+  background:rgba(247,248,250,.83);
+  -webkit-box-decoration-break:clone;
+  box-decoration-break:clone;
+  box-shadow:3px 0 0 rgba(247,248,250,.83),-3px 0 0 rgba(247,248,250,.83);
+  text-shadow:0 1px 2px #f7f8fa;
+ }
+ .morphology-home .hero-content>.text-link{
+  position:relative;
+  color:var(--ink);
+  background:rgba(247,248,250,.94);
+  box-shadow:0 0 10px 5px rgba(247,248,250,.86);
+ }
+}
+
+/* Shared identity: the existing JYJ typography stays intact at every breakpoint. */
+header .wordmark{display:inline-flex;align-items:center;gap:.34em}
+header .wordmark .wordmark-symbol{display:block;flex:0 0 auto;width:1.12em;height:1.18em;overflow:visible}
+header .wordmark .wordmark-layer-accent{stroke:var(--accent)}
+
+/* Loading and unavailable WebGL show the site background, without a still-image thumbnail. */
+.morphology-frame:not([data-webgl-ready="true"]) .morphology-canvas{visibility:hidden}
