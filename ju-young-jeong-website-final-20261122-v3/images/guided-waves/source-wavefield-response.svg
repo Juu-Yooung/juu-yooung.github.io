@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="382" viewBox="0 0 720 382" role="img" aria-labelledby="title desc">
+<title id="title">Source engineering reveals hidden responses for reliable inspection</title><desc id="desc">Conceptual illustration: geometry, coupling and excitation are engineering inputs. Controlling the elastic wavefield makes an otherwise obscured defect response distinguishable, supporting reliable inspection. Not measured data.</desc>
+<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7" fill="#87dfff"/></marker></defs>
+<g font-family="Arial,Helvetica,sans-serif">
+<rect x="1" y="1" width="718" height="380" rx="4" fill="#fff" fill-opacity=".04" stroke="#fff" stroke-opacity=".28"/>
+<g text-anchor="middle" font-size="14" font-weight="600" fill="#fff"><text x="130" y="36">Source engineering</text><text x="360" y="36">Reveal hidden responses</text><text x="590" y="36">Reliable inspection</text></g>
+<g fill="none" stroke="#87dfff" stroke-width="1.5" marker-end="url(#arrow)"><path d="M233 31H254"/><path d="M468 31H490"/></g>
+<path d="M30 61H690" stroke="#fff" stroke-opacity=".25"/>
+<g text-anchor="middle" fill="#fff" font-size="20" font-weight="600"><text x="130" y="98">Geometry</text><text x="360" y="98">Coupling</text><text x="590" y="98">Excitation</text></g>
+<g text-anchor="middle" fill="#c8dbff" font-size="12"><text x="130" y="122">Shape of the active source</text><text x="360" y="122">Contact with the structure</text><text x="590" y="122">Applied motion and phase</text></g>
+<path d="M130 138V157H360M360 138V180M590 138V157H360" fill="none" stroke="#87dfff" stroke-width="1.5"/>
+<g stroke="#c8dbff" fill="none" stroke-width="1.5">
+<path d="M34 273L130 241L226 273L130 305Z" fill="#fff" fill-opacity=".08"/>
+<ellipse cx="130" cy="244" rx="29" ry="10" fill="#093198"/><path d="M101 244V210M159 244V210"/><ellipse cx="130" cy="210" rx="29" ry="10"/>
+<ellipse cx="130" cy="244" rx="21" ry="7" stroke="#87dfff" stroke-width="3"/>
+<ellipse cx="360" cy="271" rx="64" ry="32" stroke="#87dfff" stroke-width="2"/><ellipse cx="360" cy="271" rx="48" ry="24" stroke="#87dfff" stroke-width="2"/><ellipse cx="360" cy="271" rx="32" ry="16" stroke="#87dfff" stroke-width="2"/><ellipse cx="360" cy="271" rx="16" ry="8" stroke="#87dfff" stroke-width="2"/>
+<path d="M508 285H672M508 285V216" stroke-opacity=".5"/>
+<path d="M509 268H533L537 255L541 280L545 251L549 279L553 263L557 268H593L598 257L603 278L608 250L613 277L618 263L623 268H668" stroke="#87dfff" stroke-width="2"/>
+<path d="M598 225H621M609 225V244" stroke="#fff"/>
+</g>
+<text x="609" y="213" text-anchor="middle" fill="#c8dbff" font-size="11">DEFECT ECHO</text>
+<path d="M235 252H270M446 252H490" fill="none" stroke="#87dfff" stroke-width="1.7" marker-end="url(#arrow)"/>
+<g text-anchor="middle" fill="#fff" font-size="18"><text x="130" y="337">Source / interface</text><text x="360" y="337">Wavefield</text><text x="590" y="337">Response</text></g>
+<g text-anchor="middle" fill="#c8dbff" font-size="12"><text x="130" y="360">Transfer the desired motion</text><text x="360" y="360">Control mode and uniformity</text><text x="590" y="360">Separate signal from clutter</text></g>
+</g></svg>
