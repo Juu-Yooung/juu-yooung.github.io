@@ -306,3 +306,23 @@
  .fr-hero h1{font-size:58px;letter-spacing:-2.8px}
  .fr-hero h1 span{font-size:22px}
 }
+
+/* The paper title carries the blue emphasis; the journal becomes compact metadata. */
+.fr-publication-title-focus{display:block;padding:0;border:1px solid #bccbe2;overflow:hidden;background:#fff}
+.fr-publication-title{background:var(--fr-blue);padding:30px 34px}
+.fr-publication-title .fr-kicker{color:#d8e4ff;margin:0 0 14px;font-size:12px;line-height:1.6}
+.fr-publication-title h3{color:#fff;font-size:clamp(25px,2.6vw,32px);line-height:1.4;letter-spacing:-.6px;margin:0;font-weight:400;max-width:1080px}
+.fr-publication-details{padding:28px 34px 32px;min-width:0}
+.fr-journal-line{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 18px;margin-bottom:20px;color:var(--muted);font-size:15px;line-height:1.6}
+.fr-journal-line>strong{font:600 18px/1.6 var(--sans);letter-spacing:0;color:var(--ink)}
+.fr-journal-line .fr-if{font-size:14px;color:#345b85;border-bottom:1px solid #bdcbe0;padding-bottom:2px;line-height:1.6}
+.fr-publication-details .fr-authors{font-size:15px;line-height:1.8;margin:0 0 16px}
+.fr-publication-details .fr-meta{font-size:14px;line-height:1.8;margin:0 0 22px}
+@media(max-width:760px){
+ .fr-publication-title-focus{padding:0}
+ .fr-publication-title{padding:25px 24px}
+ .fr-publication-title h3{font-size:24px;line-height:1.4}
+ .fr-publication-details{padding:24px}
+ .fr-journal-line{gap:6px 14px;margin-bottom:18px}
+}
+@media(max-width:420px){.fr-publication-title h3{font-size:23px}.fr-publication-title,.fr-publication-details{padding:22px}}

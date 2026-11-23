@@ -337,3 +337,45 @@
 .gw-page .gw-contribution{background:#e8eef8;border-left-color:#345b85}
 .gw-contribution-heading{border-bottom-color:#b6c6dc}
 .gw-contribution-heading>span,.gw-contribution-steps>li::before{color:#345b85}
+
+/* A readable sequence: constraint, required wavefield, then the engineering response. */
+.gw-engineering-paths{display:grid;gap:36px}
+.gw-path-heading{margin-bottom:18px}
+.gw-path-heading .gw-kicker{color:#c4d7ff;margin:0 0 8px;font-size:12px}
+.gw-path-heading h3{color:#fff;font-size:25px;line-height:1.35;margin:0;letter-spacing:-.45px}
+.gw-path-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.gw-path-steps>li{min-width:0;padding:24px 22px;border:1px solid;display:flex;flex-direction:column;align-items:flex-start}
+.gw-path-steps .gw-path-problem{background:#f8edef;border-color:#e3c7cf}
+.gw-path-steps .gw-path-requirement{background:#eaf0fc;border-color:#bdcceb}
+.gw-path-steps .gw-path-response{background:#e7f4ef;border-color:#91b9ad;border-left:4px solid #387b70}
+.gw-path-steps .gw-step-label{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:600;line-height:1.4;margin:0 0 22px;color:#344c71}
+.gw-step-label>span{display:inline-flex;align-items:center;justify-content:center;width:29px;height:29px;flex:none;border:1px solid currentColor;border-radius:50%;font:12px var(--mono)}
+.gw-path-problem .gw-step-label{color:#8c5260}
+.gw-path-response .gw-step-label{color:#24695f}
+.gw-path-steps h4{font-size:23px;font-weight:500;line-height:1.3;letter-spacing:-.45px;margin:0 0 14px;color:#15243b}
+.gw-path-response h4{color:#195c54}
+.gw-path-steps>li>p:not(.gw-step-label){font-size:16px;line-height:1.75;margin:0;color:#405168}
+.gw-path-steps strong{font-weight:650;color:#15243b}
+.gw-path-steps>li>a{display:inline-block;margin-top:20px;color:#195c54;border-bottom:1px solid #79a99d;padding-bottom:3px;font-size:14px;line-height:1.5}
+.gw-path-steps>li>a:hover{color:#093198}
+/* Each problem/solution is a short claim, a concept drawing and one explanation. */
+.gw-problem-cards>article{padding:28px;min-width:0}
+.gw-problem-cards h3{font-size:25px;line-height:1.3;min-height:2.6em;margin:0 0 14px;letter-spacing:-.6px}
+.gw-card-diagram{margin:0 0 18px}
+.gw-card-diagram img{display:block;width:100%;height:auto;aspect-ratio:480/210}
+.gw-problem-cards>article>p:last-child{font-size:16px;line-height:1.75;margin:0}
+.gw-contribution-steps p>strong{display:inline;font-size:inherit;line-height:inherit;font-weight:600;margin:0}
+@media(max-width:1050px){.gw-path-steps>li{padding:22px 18px}.gw-path-steps h4{font-size:22px}}
+@media(max-width:900px){
+ .gw-path-steps{grid-template-columns:1fr;gap:12px}
+ .gw-path-steps>li{padding:22px 24px}
+ .gw-path-steps .gw-step-label{margin-bottom:14px}
+ .gw-path-steps h4{margin-bottom:10px}
+ .gw-path-heading h3{font-size:24px}
+}
+@media(max-width:700px){
+ .gw-problem-cards{grid-template-columns:1fr;gap:20px}
+ .gw-problem-cards>article{padding:24px}
+ .gw-problem-cards h3{font-size:24px;min-height:0}
+ .gw-card-diagram{margin-bottom:16px}
+}
