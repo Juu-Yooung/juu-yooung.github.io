@@ -1,14 +1,14 @@
 /* Homepage proposal: one continuous scene, three research chapters. */
-.story-home .story-hero{height:auto;min-height:0;padding:0;display:block;overflow:clip;background:#15243b;color:#f5f6f7}
+.story-home .story-hero{height:auto;min-height:0;padding:0 5%;display:block;overflow:clip;background:#15243b;color:#f5f6f7}
 .story-home .story-stage{position:relative;top:auto;height:calc(100vh - var(--site-header-height));height:calc(100svh - var(--site-header-height));min-height:570px;isolation:isolate;overflow:hidden;background:#15243b}
 .story-home .story-scene{position:absolute;inset:0;margin:0;width:100%;height:100%;max-width:none;transform:none;background:transparent;mask-image:none;-webkit-mask-image:none;pointer-events:none;z-index:0}
 .story-home .story-scene canvas{display:block;width:100%;height:100%;pointer-events:none}
 .story-home .story-shade{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(21,36,59,.94),rgba(21,36,59,.55) 35%,transparent 64%),linear-gradient(0deg,#15243b 0%,rgba(21,36,59,.7) 14%,transparent 43%)}
-.story-home .story-identity{position:absolute;top:34px;left:5%;z-index:2}
+.story-home .story-identity{position:absolute;top:34px;left:0;z-index:2}
 .story-home .story-identity>p{font:11px/1.6 var(--mono);letter-spacing:1.2px;color:#a4afbd;margin:0 0 12px}
 .story-home .story-identity>div{font-size:27px;letter-spacing:-.8px;line-height:1.25;font-weight:400}
 .story-home .story-identity>div>span{font-size:14px;letter-spacing:1px;color:#a4afbd;margin-left:16px;border-left:1px solid #4c5561;padding-left:16px}
-.story-home .story-copy{position:absolute;z-index:3;left:5%;bottom:132px;width:min(650px,55%)}
+.story-home .story-copy{position:absolute;z-index:3;left:0;bottom:132px;width:min(650px,55%)}
 .story-home .story-panels{display:grid}
 .story-home .story-panel{grid-area:1/1;opacity:0;visibility:hidden;transform:translateY(20px);transition:opacity .45s ease,transform .6s ease,visibility .45s;pointer-events:none}
 .story-home .story-panel.is-active{opacity:1;visibility:visible;transform:none;pointer-events:auto}
@@ -18,14 +18,14 @@
 .story-home .story-description{font-size:17px;line-height:1.65;color:#b9c1cb;max-width:420px;margin:0}
 .story-home .story-research-link{display:inline-block;margin-top:27px;padding-bottom:9px;border-bottom:1px solid #91a3b9;font-size:14px;color:#f5f6f7}
 .story-home .story-research-link:hover{color:#d9b88b;border-color:#d9b88b}
-.story-home .story-chapters{position:absolute;z-index:3;bottom:30px;left:5%;width:min(600px,54%);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.story-home .story-chapters{position:absolute;z-index:3;bottom:30px;left:0;width:min(600px,54%);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
 .story-home .story-chapters button{border:0;border-top:1px solid #48515e;text-align:left;padding:13px 0 0;background:transparent;color:#788493;cursor:pointer;min-height:56px;transition:color .25s,border-color .25s}
 .story-home .story-chapters button span{display:block;font-size:16px;line-height:1.3}
 .story-home .story-chapters button small{display:block;font-size:12px;line-height:1.4;margin-top:5px;color:inherit}
 .story-home .story-chapters button[aria-current="step"]{color:#f5f6f7;border-top:2px solid #d6b38a;padding-top:12px}
 .story-home .story-chapters button:hover{color:#fff}
 .story-home .story-scroll-cue{position:absolute;z-index:2;bottom:34px;right:5%;font:10px/1.6 var(--mono);letter-spacing:.4px;color:#8d9bac;margin:0 0 47px}
-.story-home .story-stage .motion-toggle{position:absolute;bottom:30px;right:5%;color:#cbd2dc;background:transparent;border-color:#48515e;padding:10px 13px;font-size:10px;backdrop-filter:none;max-width:none}
+.story-home .story-stage .motion-toggle{position:absolute;bottom:30px;right:0;color:#cbd2dc;background:transparent;border-color:#48515e;padding:10px 13px;font-size:10px;backdrop-filter:none;max-width:none}
 .story-home .story-stage .motion-toggle span{color:#cbd2dc}
 .story-home .story-noscript{position:absolute;z-index:8;top:110px;left:5%;max-width:400px;background:#15243b;color:#fff}
 .story-home:not(.story-past-hero) header{background:#15243b;border-color:#35465f;color:#f5f6f7;backdrop-filter:none}
@@ -34,28 +34,28 @@
 .story-home:not(.story-past-hero) header nav a:hover,.story-home:not(.story-past-hero) header nav a.active{color:#fff;background:transparent}
 .story-home:not(.story-past-hero) header .nav-toggle,.story-home:not(.story-past-hero) header .nav-contact{color:#f5f6f7;border-color:#48515e}
 .story-home .story-hero :focus-visible{outline:2px solid #d6b38a}
-@media(min-width:1600px){.story-home .story-copy{bottom:155px}.story-home .story-description{font-size:19px;max-width:480px}}
+@media(min-width:1600px){.story-home .story-hero{padding-left:max(5%,calc((100vw - 1440px)/2));padding-right:max(5%,calc((100vw - 1440px)/2))}.story-home .story-copy{bottom:155px}.story-home .story-description{font-size:19px;max-width:480px}}
 @media(max-width:1100px) and (min-width:761px){.story-home .hero .story-title{font-size:clamp(40px,5vw,56px);letter-spacing:-2px}.story-home .story-copy{width:57%;bottom:125px}.story-home .story-description{font-size:16px;max-width:365px}.story-home .story-identity>div{font-size:24px}}
 @media(max-width:760px){
- .story-home .story-hero{height:auto}
+ .story-home .story-hero{height:auto;padding-left:6%;padding-right:6%}
  .story-home .story-stage{min-height:0}
  .story-home .story-identity{top:23px;left:6%;right:6%}
  .story-home .story-identity>p{font-size:8px;letter-spacing:.7px;margin-bottom:9px}
  .story-home .story-identity>div{font-size:23px;letter-spacing:-.7px}
  .story-home .story-identity>div>span{font-size:12px;margin-left:11px;padding-left:11px}
  .story-home .story-shade{background:linear-gradient(0deg,#15243b 0%,rgba(21,36,59,.94) 21%,rgba(21,36,59,.6) 43%,transparent 65%),linear-gradient(180deg,rgba(21,36,59,.8),transparent 25%)}
- .story-home .story-copy{left:6%;right:6%;width:auto;bottom:151px}
+ .story-home .story-copy{left:0;right:0;width:auto;bottom:151px}
  .story-home .hero .story-title{font-size:clamp(32px,9vw,52px);letter-spacing:-1.7px;line-height:1.05;margin-bottom:17px}
  .story-home .story-eyebrow{font-size:9px;letter-spacing:1.1px;margin-bottom:13px}
  .story-home .story-description{font-size:14px;line-height:1.6;max-width:370px;color:#c0c7d0}
  .story-home .story-research-link{font-size:13px;margin-top:20px;padding-bottom:7px}
- .story-home .story-chapters{left:6%;right:6%;width:auto;bottom:65px;gap:15px}
+ .story-home .story-chapters{left:0;right:0;width:auto;bottom:65px;gap:15px}
  .story-home .story-chapters button{min-height:52px;padding-top:10px}
  .story-home .story-chapters button[aria-current="step"]{padding-top:9px}
  .story-home .story-chapters button span{font-size:14px}
  .story-home .story-chapters button small{font-size:10px;margin-top:4px}
  .story-home .story-scroll-cue{left:6%;right:auto;bottom:24px;margin:0;font-size:8px;max-width:54%}
- .story-home .story-stage .motion-toggle{bottom:17px;right:6%;font-size:9px;padding:8px 9px}
+ .story-home .story-stage .motion-toggle{bottom:17px;right:0;font-size:9px;padding:8px 9px}
 }
 @media(prefers-reduced-motion:reduce){.story-home .story-panel,.story-home .story-chapters button{transition:none}}
 @media(max-height:700px) and (max-width:760px){
