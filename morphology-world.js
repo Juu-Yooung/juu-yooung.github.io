@@ -5,7 +5,7 @@
 })(typeof window !== 'undefined' ? window : this, function (T) {
  'use strict';
  const scene = new T.Scene();
- scene.fog = new T.FogExp2(0xf7f8fa, 0.012);
+ scene.fog = new T.FogExp2(0x15243b, 0.012);
  const camera = new T.OrthographicCamera(-10,10,5,-5,0.1,80);
  camera.position.set(0,8,14); camera.lookAt(0,0,0); camera.updateMatrixWorld();
  scene.add(new T.HemisphereLight(0xfffcf5,0x38332f,1.25));
@@ -262,25 +262,45 @@
  let width=1200,height=620,mobile=false,viewHeight=9.7;
  const right=new T.Vector3(),up=new T.Vector3(),forward=new T.Vector3();
  const dummy=new T.Object3D();
+ // The same scene moves between three compositions; geometry keeps evolving in place.
+ const story={progress:0,weights:[1,0,0],chapter:0};
+ const desktopPoses={
+  evolution:[[.76,.43,2.65],[.99,.22,1.03],[1.23,.20,.025]],
+  pillars:[[1.13,.16,.025],[.68,.40,1.65],[1.15,.14,.025]],
+  particles:[[1.15,.67,.025],[.91,.64,1.16],[1.20,.67,.025]],
+  holes:[[1.08,.90,.025],[.64,.79,1.02],[1.02,.88,.48]],
+  cavities:[[1.12,.72,.025],[.94,.84,.025],[.76,.43,2.02]],
+  devices:[[1.15,.28,.025],[1.15,.28,.025],[.99,.27,1.03]],
+  flexible:[[.60,1.15,.025],[.48,1.14,.025],[.53,.79,1.14]]
+ };
+ const mobilePoses={
+  evolution:[[.60,.27,1.46],[.98,.13,.52],[1.25,.12,.025]],
+  pillars:[[1.2,.12,.025],[.58,.24,1.14],[1.20,.10,.025]],
+  particles:[[1.2,.46,.025],[.84,.43,.70],[1.20,.44,.025]],
+  holes:[[1.15,.44,.025],[.23,.42,.67],[1.13,.46,.025]],
+  cavities:[[1.2,.44,.025],[1.2,.44,.025],[.64,.27,1.48]],
+  devices:[[1.2,.44,.025],[1.2,.44,.025],[.88,.44,.57]],
+  flexible:[[.18,1.14,.025],[.18,1.14,.025],[.20,.43,.67]]
+ };
  function place(entry,t,index){
-  const target=mobile?entry.mobile:entry.desktop;
-  const drift=.008;
-  const flow=t*.18-index*.24;
-  const sx=target[0]+Math.sin(t*.18)*.014+Math.sin(flow)*drift;
-  const sy=target[1]+Math.cos(t*.18)*.012+Math.cos(flow)*drift;
+  const poses=(mobile?mobilePoses:desktopPoses)[entry.kind];
+  const pose=[0,0,0];
+  poses.forEach((v,j)=>v.forEach((n,k)=>pose[k]+=n*story.weights[j]));
+  const sx=pose[0]+Math.sin(t*.14)*.006;
+  const sy=pose[1]+Math.cos(t*.14)*.004;
   const w=viewHeight*width/height;
   entry.anchor.position.copy(right).multiplyScalar((sx-.5)*w).addScaledVector(up,(.5-sy)*viewHeight).addScaledVector(forward,index*.035);
-  entry.body.rotation.y=Math.sin(t*.18-index*.24)*.16 + (index%2?.12:-.12);
-  entry.body.rotation.z=Math.sin(t*.18-index*.24)*.025;
-  const phase=t/18*Math.PI*2;
-  const chapter=entry.kind==='evolution'?0:entry.kind==='devices'||entry.kind==='cavities'||entry.kind==='flexible'?2:1;
-  const focus=.5+.5*Math.cos(phase-chapter*Math.PI*2/3);
-  const scale=entry.baseScale*(mobile?.80:1)*(.81+.35*focus);
-  entry.body.scale.setScalar(scale);
-  entry.anchor.visible=true;
+  entry.body.rotation.y=-.15+Math.sin(t*.14)*.065;
+  entry.body.rotation.z=Math.sin(t*.14)*.012;
+  entry.body.scale.setScalar(Math.max(.025,pose[2])*(1+.012*Math.sin(t*.2)));
+  entry.anchor.visible=pose[2]>.055;
  }
- function update(ms){
+ function update(ms,progress=0,chapterWeights=null){
   const t=ms*.001;
+  story.progress=T.MathUtils.clamp(Number.isFinite(progress)?progress:0,0,1);
+  const a=T.MathUtils.smoothstep(story.progress,.18,.42),b=T.MathUtils.smoothstep(story.progress,.58,.82);
+  story.weights=chapterWeights?chapterWeights.slice():[1-a,a*(1-b),b];
+  story.chapter=story.progress<.30?0:story.progress<.70?1:2;
   for(let i=0;i<objects.length;i++)place(objects[i],t,i);
   const morphology=.5-.5*Math.cos(t*.36);
   const pillarMorph=.5-.5*Math.cos(t*.36-.38);
@@ -389,17 +409,17 @@
   scene.updateMatrixWorld(true);
   const sweep=.5+.5*Math.sin(t*.18-.4);
   travelingLight.position.copy(right).multiplyScalar((.53+sweep*.40-.5)*viewHeight*width/height).addScaledVector(up,(.5-(.32+sweep*.40))*viewHeight);travelingLight.position.y+=1.4;
-  return Math.floor((t%18)/6);
+  return story.chapter;
  }
  function resize(w,h,compact=false){
   width=Math.max(1,w);height=Math.max(1,h);mobile=compact||width/height<1.15;
-  viewHeight=mobile?10.7:9.7;
+  viewHeight=mobile?14.4:9.7;
   const viewWidth=viewHeight*width/height;
   camera.left=-viewWidth/2;camera.right=viewWidth/2;camera.top=viewHeight/2;camera.bottom=-viewHeight/2;
   camera.updateProjectionMatrix();camera.updateMatrixWorld();
   right.set(1,0,0).applyQuaternion(camera.quaternion);up.set(0,1,0).applyQuaternion(camera.quaternion);forward.set(0,0,1).applyQuaternion(camera.quaternion);
  }
  resize(width,height);update(0);
- return {scene,camera,objects,materials,resize,update,inspect:{hill,pillarField,particleField,layers,shuttle,holeGeo,pillarGeo,pedestalField,evolutionStates,cavityBlocks,piezoAssembly,flexElements,ghostSurface,tissue,vessel,acousticWaves,medicalWaves,samples,droplet,ribbons,receptors,laser,thermal}};
+ return {scene,camera,objects,materials,resize,update,inspect:{story,hill,pillarField,particleField,layers,shuttle,holeGeo,pillarGeo,pedestalField,evolutionStates,cavityBlocks,piezoAssembly,flexElements,ghostSurface,tissue,vessel,acousticWaves,medicalWaves,samples,droplet,ribbons,receptors,laser,thermal}};
 });
 

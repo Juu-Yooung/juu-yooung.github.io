@@ -5,6 +5,25 @@
  if (!host) return;
  const canvas = host.querySelector('canvas');
  const toggle = document.querySelector('.motion-toggle');
+ const hero=host.closest('.hero');
+ const panels=Array.from(hero.querySelectorAll('[data-story-panel]'));
+ const chapters=Array.from(hero.querySelectorAll('[data-story-chapter]'));
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
+ let chapter=-1,chooseChapter=i=>setChapter(i);
+ function setChapter(next){
+  if(chapter===next)return;
+  chapter=next;
+  panels.forEach((panel,i)=>{panel.classList.toggle('is-active',i===chapter);panel.setAttribute('aria-hidden',String(i!==chapter));panel.inert=i!==chapter;});
+  chapters.forEach((button,i)=>{if(i===chapter)button.setAttribute('aria-current','step');else button.removeAttribute('aria-current');});
+ }
+ function updateHeader(){
+  const header=document.querySelector('header').getBoundingClientRect().height;
+  document.body.classList.toggle('story-past-hero',hero.getBoundingClientRect().bottom<=header+1);
+ }
+ chapters.forEach((button,i)=>button.addEventListener('click',()=>chooseChapter(i)));
+ window.addEventListener('scroll',updateHeader,{passive:true});
+ window.addEventListener('resize',updateHeader);
+ setChapter(0);updateHeader();
  const T = window.THREE;
  if (!T || !window.createMorphologyWorld) { if(toggle)toggle.hidden=true; return; }
  let renderer;
@@ -34,27 +53,48 @@
   const pmrem=new T.PMREMGenerator(renderer);
   envTarget=pmrem.fromCubemap(cube);world.scene.environment=envTarget.texture;pmrem.dispose();cube.dispose();
  } catch(error) {world.scene.environment=cube;}
- const reduced=window.matchMedia('(prefers-reduced-motion: reduce)');
  const fine=window.matchMedia('(hover: hover) and (pointer: fine)');
  let paused=reduced.matches,visible=true,contextLost=false,frame=0,elapsed=0,last=null,lastPaint=-100;
+ // Nine seconds per chapter, including a two-second transition to the next.
+ // The third composition blends directly back into the first, without rewinding.
+ const chapterDuration=9000;
+ let storyTime=0,weights=[1,0,0],manual=null;
  let tiltX=0,tiltY=0,targetX=0,targetY=0;
  function render(){
-  world.update(elapsed);
+  if(manual){
+   const blend=T.MathUtils.smoothstep(elapsed-manual.start,0,900);
+   weights=manual.from.map((n,i)=>n*(1-blend)+(i===manual.target?blend:0));
+   if(blend>=1)manual=null;
+  }else{
+   const phase=storyTime/chapterDuration%3;
+   const current=Math.floor(phase),next=(current+1)%3;
+   const blend=T.MathUtils.smoothstep(phase-current,7/9,1);
+   weights=[0,0,0];weights[current]=1-blend;weights[next]=blend;
+   setChapter(blend<.5?current:next);
+  }
+  world.update(elapsed,chapter*.5,weights);
   tiltX+=(targetX-tiltX)*.07;tiltY+=(targetY-tiltY)*.07;
   world.scene.rotation.x=tiltX;world.scene.rotation.y=tiltY;
   renderer.render(world.scene,world.camera);
  }
+ chooseChapter=i=>{
+  manual=paused||reduced.matches?null:{from:weights.slice(),target:i,start:elapsed};
+  storyTime=i*chapterDuration;
+  setChapter(i);
+  if(!contextLost)render();
+ };
  function resize(){
   const rect=host.getBoundingClientRect();
   renderer.shadowMap.enabled=rect.width>760;
   renderer.setSize(Math.max(1,rect.width),Math.max(1,rect.height),false);
   world.resize(rect.width,rect.height,window.innerWidth<=760);
+  updateHeader();
   render();
  }
  function tick(time){
   frame=0;
   if(paused||!visible||document.hidden||contextLost){last=null;return;}
-  if(last!==null)elapsed+=Math.min(80,time-last);
+  if(last!==null){const delta=Math.min(80,time-last);elapsed+=delta;storyTime+=delta;}
   last=time;
   if(time-lastPaint>=1000/30){render();lastPaint=time;}
   frame=window.requestAnimationFrame(tick);
@@ -76,9 +116,12 @@
   refresh();
  }
  if(toggle)toggle.addEventListener('click',()=>{paused=!paused;updateToggle();});
- reduced.addEventListener('change',()=>{paused=reduced.matches;updateToggle();});
+ reduced.addEventListener('change',()=>{
+  paused=reduced.matches;
+  if(paused){manual=null;storyTime=chapter*chapterDuration;if(!contextLost)render();}
+  updateToggle();
+ });
  document.addEventListener('visibilitychange',refresh);
- const hero=host.closest('.hero');
  hero.addEventListener('pointermove',e=>{
   if(paused||!fine.matches)return;
   const r=hero.getBoundingClientRect();
