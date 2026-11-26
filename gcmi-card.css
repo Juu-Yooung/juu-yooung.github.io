@@ -1,0 +1,33 @@
+/* Four projects retain their reading order: the global project follows ForRheU. */
+@media(min-width:761px){#research .research-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}}
+/* Desktop cards span the section, starting under its Research label. */
+@media(min-width:981px){
+ #research{row-gap:38px}
+ #research>.section-body{display:contents}
+ #research>.section-label{grid-column:1;grid-row:1}
+ #research .section-heading{grid-column:2;grid-row:1;margin-bottom:0}
+ #research .research-grid{grid-column:1 / -1;grid-row:2;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;min-width:0}
+ #research .card-text{padding:22px 16px}
+ #research .card-text h3{font-size:clamp(18px,1.5vw,23px);line-height:1.3;overflow-wrap:break-word}
+ #research .gcmi-card-heading{gap:9px}
+ #research .gcmi-card-heading>.eyebrow{overflow-wrap:anywhere}
+ #research .gcmi-card-flags{gap:5px}
+ #research .gcmi-card-flags img{height:16px}
+}
+.gcmi-card-visual{display:block;background:#e8e9eb}
+.gcmi-card-visual img{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover}
+.gcmi-research-card .card-text>p:not(.eyebrow){min-height:0}
+.gcmi-card-heading{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px}
+.gcmi-research-card .gcmi-card-heading>.eyebrow{min-width:0;margin:0;line-height:1.65}
+.gcmi-card-flags{display:flex;align-items:center;gap:7px;flex:0 0 auto}
+.gcmi-card-flags img{display:block;width:auto;height:18px;max-width:none;border:1px solid #cbd2dc;box-sizing:content-box}
+.gcmi-card-flags>span{font-size:12px;line-height:1;color:#728298}
+@media(max-width:760px){.gcmi-research-card{display:flex;flex-direction:column}.gcmi-card-visual{display:block;height:auto;border-right:0;border-bottom:1px solid var(--line)}.gcmi-card-visual img{height:auto;object-fit:contain}}
+/* Wide research thumbnails sit above their descriptions on phones. */
+@media(max-width:760px){
+ #research .research-card-mobile-stack{display:flex;flex-direction:column}
+ #research .research-card-mobile-stack>.research-visual{display:block;flex:none;width:100%;height:auto;border-right:0;border-bottom:1px solid var(--line)}
+ #research .research-card-mobile-stack>.research-visual>img,
+ #research .research-card-mobile-stack>.research-visual>svg{display:block;width:100%;height:auto;max-width:100%;aspect-ratio:auto;object-fit:contain}
+ #research .research-card-mobile-stack>.card-text{width:100%;min-width:0}
+}

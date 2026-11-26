@@ -1,0 +1,83 @@
+/* Compact project presentation after the annotated review. */
+.gc-partner-flags{display:inline-flex;align-items:center;gap:12px;margin-bottom:18px}
+.gc-partner-flags img{display:block;width:42px;height:28px;border:1px solid #cbd2dc;object-fit:contain}
+.gc-partner-flags>span{font-size:17px;line-height:1;color:#728298}
+.gc-hero-intro p.gc-project-context{font-size:13px;line-height:1.65;color:#718095;margin:16px 0 0}
+.gc-method .gc-section{padding-top:68px;padding-bottom:68px}
+.gcmi-page .gc-approach-summary{font-size:16px;line-height:1.8;color:#c1ccda;border-top:1px solid #596c84;padding-top:23px;margin:0}
+.gcmi-page .gc-results-summary{font-size:20px;line-height:1.65;max-width:920px;margin:0 0 30px;color:var(--ink)}
+.gc-results-gallery{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.gc-results-gallery figure{margin:0;background:#fff;border:1px solid #d8dfe9;min-width:0}
+.gc-results-gallery img{display:block;width:100%;height:auto;aspect-ratio:16/10;object-fit:contain}
+.gc-results-gallery figcaption{font-size:15px;line-height:1.5;padding:15px 18px;color:var(--ink)}
+.gcmi-page .gc-framework-intro{max-width:850px;color:#c8d3e1;font-size:18px;line-height:1.75;margin:0 0 34px}
+.gc-framework-intro b{color:#fff;font-weight:500}
+/* Compact horizontal workflows; VDI stages are grouped for a short overview. */
+.gc-framework{margin:0;display:grid;gap:15px}
+.gc-framework-lane{--lane-accent:#99c9d0;display:grid;grid-template-columns:170px minmax(0,1fr);align-items:center;gap:24px;padding:18px 22px;background:#1d3049;border:1px solid #405671;border-radius:4px}
+.gc-lane-pahl{--lane-accent:#d3ba8b;background:#1e2d41}
+.gcmi-page .gc-framework h3{font-size:22px;line-height:1.25;letter-spacing:-.4px;color:#f3f6fa;margin:0}
+.gc-framework h3>span{display:block;font-size:12px;line-height:1.5;letter-spacing:0;color:#aebdd0;margin-top:7px}
+.gc-framework ol{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));list-style:none;padding:0;margin:0;gap:18px}
+.gc-framework li{position:relative;min-width:0;display:flex;flex-direction:column;gap:10px;color:#edf2f9;font-size:15px;line-height:1.35}
+.gc-step-node{position:relative;display:flex;align-items:center;justify-content:center;width:25px;height:25px;border:1px solid var(--lane-accent);border-radius:50%;color:var(--lane-accent);font:10px/1 var(--mono);background:#1b2b40}
+.gc-framework li:not(:last-child)::after{content:"";position:absolute;top:12px;left:35px;right:-8px;height:1px;background:linear-gradient(90deg,var(--lane-accent),#52647b);opacity:.65}
+.gc-framework li:not(:last-child)::before{content:"";position:absolute;top:9px;right:-8px;width:6px;height:6px;border-top:1px solid var(--lane-accent);border-right:1px solid var(--lane-accent);transform:rotate(45deg);opacity:.8}
+.gc-partner-flags img{width:auto;height:28px;object-fit:contain;box-sizing:content-box}
+.gcmi-page .gc-results-summary strong{font-weight:500;color:var(--ink)}
+@media(max-width:950px){
+ .gc-framework-lane{grid-template-columns:135px minmax(0,1fr);gap:18px;padding:16px 18px}
+ .gcmi-page .gc-framework h3{font-size:20px}
+ .gc-framework li{font-size:14px}
+}
+@media(max-width:760px){
+ .gcmi-page .gc-framework-intro{font-size:17px;margin-bottom:25px}
+ .gc-framework{gap:13px}
+ .gc-framework-lane{display:block;padding:16px 13px}
+ .gcmi-page .gc-framework h3{display:flex;align-items:baseline;justify-content:space-between;gap:10px;font-size:19px;margin-bottom:17px}
+ .gc-framework h3>span{font-size:11px;margin:0}
+ .gc-framework ol{gap:12px}
+ .gc-framework li{font-size:14px;line-height:1.4;overflow-wrap:anywhere;gap:9px}
+ .gc-framework li br{display:none}
+ .gc-framework li:not(:last-child)::after{left:32px;right:-5px}
+ .gc-framework li:not(:last-child)::before{right:-5px}
+}
+@media(max-width:760px){
+ .gc-partner-flags{gap:10px;margin-bottom:16px}
+ .gc-partner-flags img{width:auto;height:24px}
+ .gc-method .gc-section{padding-top:50px;padding-bottom:50px}
+ .gc-method-intro{margin-bottom:24px}
+ .gcmi-page .gc-results-summary{font-size:18px}
+ .gc-results-gallery{grid-template-columns:1fr;gap:21px}
+ .gc-results-gallery figcaption{font-size:14px}
+}
+
+/* Application story: one edited visual shared by three explicit use cases. */
+.gc-applications{margin:0 0 50px}
+.gc-application-panorama{margin:0 -2% -5px}
+.gc-application-panorama img{display:block;width:100%;height:auto}
+.gc-application-uses{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px}
+.gc-application-uses article{--use-color:#52745b;border-top:2px solid var(--use-color);padding:18px 0 0;min-width:0}
+.gc-application-uses .gc-use-parcels{--use-color:#486e9c}
+.gc-application-uses .gc-use-recycling{--use-color:#a18452}
+.gcmi-page .gc-application-uses h3{font-size:24px;letter-spacing:-.5px;line-height:1.2;margin:0 0 10px;color:var(--ink)}
+.gcmi-page .gc-application-uses p{font-size:15px;line-height:1.6;margin:0;max-width:290px}
+.gcmi-page .gc-application-caption{font-size:12px;line-height:1.5;color:#6e7c8d;margin:20px 0 0}
+.gc-use-mobile{display:none}
+.gc-design-translation{display:grid;grid-template-columns:1fr 1.5fr;gap:7%;border-top:1px solid var(--line);padding:32px 0;align-items:center}
+.gc-design-translation .gc-kicker{margin-bottom:12px}
+.gcmi-page .gc-design-translation h3{font-size:30px;line-height:1.18;letter-spacing:-.8px;margin:0}
+.gcmi-page .gc-design-translation>p{font-size:17px;line-height:1.7;margin:0}
+@media(max-width:760px){
+ .gc-applications{margin-bottom:34px}
+ .gc-application-panorama{display:none}
+ .gc-application-uses{grid-template-columns:1fr;gap:27px}
+ .gc-application-uses article{padding-top:0;border-top:0}
+ .gc-use-mobile{display:block;aspect-ratio:1.25;background-image:url('images/gcmi/urban-applications-refined.png');background-size:300% auto;background-repeat:no-repeat;background-position:0 50%;margin:0 -2% 14px}
+ .gc-use-parcels .gc-use-mobile{background-position:50% 50%}
+ .gc-use-recycling .gc-use-mobile{background-position:100% 50%}
+ .gcmi-page .gc-application-uses h3{font-size:25px;border-top:2px solid var(--use-color);padding-top:15px}
+ .gcmi-page .gc-application-uses p{max-width:none;font-size:16px}
+ .gc-design-translation{display:block;padding:27px 0}
+ .gcmi-page .gc-design-translation>p{font-size:16px;margin-top:20px}
+}
